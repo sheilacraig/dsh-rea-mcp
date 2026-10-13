@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "REA —— Reverse Engineer Anything",
+    "description": "纯配置型 DeepSeek Harness 插件，用本体自带的 MCP 客户端桥，经 stdio 连接 morluto/rea。从应用行为一路拆到底层原生二进制，本地分析并附证据。"
+  }
+}

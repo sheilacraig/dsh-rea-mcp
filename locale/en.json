@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "REA — Reverse Engineer Anything",
+    "description": "Config-only DeepSeek Harness bundle that mounts the in-box MCP client bridge against morluto/rea over stdio. From app behavior down to native binaries, traced locally with evidence."
+  }
+}

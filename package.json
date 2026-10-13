@@ -1,0 +1,65 @@
+{
+  "name": "dsh-rea-mcp",
+  "version": "1.0.0",
+  "description": "Config-only DeepSeek Harness bundle that mounts the in-box MCP client bridge against morluto/rea — reverse engineer anything with agents; no plugin code.",
+  "license": "MIT",
+  "author": {
+    "name": "sheilacraig",
+    "url": "https://github.com/sheilacraig"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sheilacraig/dsh-rea-mcp.git"
+  },
+  "homepage": "https://github.com/sheilacraig/dsh-rea-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/sheilacraig/dsh-rea-mcp/issues"
+  },
+  "icon": "./icon.svg",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "mcp",
+    "rea",
+    "reverse-engineering",
+    "binary-analysis",
+    "decompiler",
+    "disassembler",
+    "ai-agents",
+    "stdio"
+  ],
+  "engines": {
+    "node": ">=22.19",
+    "dsh": ">=0.2.0-rc.1 <0.3.0-0"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "files": [
+    "cordis.patch.yml",
+    "locale/",
+    "icon.svg",
+    "README.md",
+    "README.zh.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "tools/prewarm.mjs"
+  ],
+  "scripts": {
+    "test": "node --test test/",
+    "prewarm": "node tools/prewarm.mjs",
+    "prepublishOnly": "node --test test/ && node --check tools/prewarm.mjs"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "dsh": {
+    "manifestVersion": 1,
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

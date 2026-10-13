@@ -1,0 +1,31 @@
+# dsh-rea-mcp — the entire integration, in one row.
+#
+# The row below mounts the MCP client bridge that ships inside DeepSeek Harness
+# (`@deepseek-ai/dsh-mcp-client`) and points it at REA — the
+# "Reverse Engineer Anything" agent from github.com/morluto/rea — over stdio.
+# Nothing else is added: no Host plugin, no web route, no state file.
+#
+# The upstream server's tools reach the model as `mcp__rea__<Tool>`.
+- insert:
+    - id: rea-mcp
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: rea
+        transport: stdio
+        # `npx` resolves from the PATH of the process that runs DSH. No absolute
+        # path is written here on purpose: this file is shipped to other people's
+        # machines, and a hardcoded user directory is the usual reason a plugin
+        # works for its author and nowhere else.
+        command: npx
+        args:
+          # Pinned. An upstream release must not change this bridge's behaviour
+          # under you; bump this deliberately, then re-run `npm run prewarm`.
+          - -y
+          - rea-agents@6.4.0
+          - mcp
+        # REA's deep native-analysis and runtime-capture workflows can run for
+        # a long time before the first structured tool result returns.
+        toolCallTimeoutMs: 300000
+        # A server that cannot start leaves the rest of the harness working and
+        # logs the reason, instead of failing this row at activation.
+        failOnStartupError: false
