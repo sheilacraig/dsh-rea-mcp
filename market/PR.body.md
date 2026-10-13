@@ -10,8 +10,8 @@ Adds one entry: `sheilacraig/dsh-rea-mcp`, category `tools`.
 
 - [`cordis.patch.yml`](https://github.com/sheilacraig/dsh-rea-mcp/blob/main/cordis.patch.yml) — the pinned version and the startup defaults, as shipped.
 - [`test/patch.test.mjs`](https://github.com/sheilacraig/dsh-rea-mcp/blob/main/test/patch.test.mjs) — `npm test` checks the pin, the subcommand, the timeout, the startup default, the display metadata, the submission rules, and that no machine-specific path can reach a published file.
-- [`tools/prewarm.mjs`](https://github.com/sheilacraig/dsh-rea-mcp/blob/main/tools/prewarm.mjs) — runs the same argv the bridge runs and proves the pinned server answers the MCP handshake.
+- [`tools/prewarm.mjs`](https://github.com/sheilacraig/dsh-rea-mcp/blob/main/tools/prewarm.mjs) — runs the same argv the bridge runs and is the single command an adopter would run to download and handshake the pinned server before installing.
 
-**Verified before submitting** on DSH 0.2.0-rc.2 (desktop, Windows 11): `npx -y rea-agents@6.4.0 mcp` answered `initialize` and `tools/list` successfully, returning the live REA tool set. Static JavaScript and .NET analysis need no native engine; native binary analysis uses an existing Hopper/Ghidra/IDA installation.
+**Checked before submitting:** `npm test` passes all 13 invariants (single bridge row, pinned `rea-agents@6.4.0`, `mcp` subcommand, `toolCallTimeoutMs: 300000`, `failOnStartupError: false`, display metadata, list submission rules, no absolute path in any published file); `npm pack --dry-run` ships the expected 10 files and nothing else. Static JavaScript and .NET analysis need no native engine; native binary analysis uses an existing Hopper/Ghidra/IDA installation.
 
 Maintenance: any change to the pin, the subcommand or the startup defaults has to keep that test suite green.
