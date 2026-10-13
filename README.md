@@ -47,7 +47,6 @@ In-app: **Settings → Plugins → Add plugin**, paste one of:
 ```text
 dsh-rea-mcp                                  # the npm package name
 github:sheilacraig/dsh-rea-mcp               # the GitHub repository
-C:\path\to\a\local\checkout                  # a local absolute path
 ```
 
 For a CLI-held profile:
@@ -57,6 +56,14 @@ dsh plugin --profile <profile> add dsh-rea-mcp
 ```
 
 The Electron desktop's own `desktop` profile belongs to the app; use its plugin panel.
+
+**For local development, do not install a link that points at an external checkout.** To verify a local tree, pack it and install the tarball, which lands inside DSH's own plugin directory instead of leaving a link into your workspace:
+
+```sh
+cd dsh-rea-mcp
+npm pack                          # produces dsh-rea-mcp-<version>.tgz
+# in the DSH plugin panel, Add plugin -> the local path of that tarball
+```
 
 Then **restart DSH** so the new patch layer is composed at startup.
 

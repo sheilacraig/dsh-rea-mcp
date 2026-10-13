@@ -45,9 +45,8 @@ DSH agent
 应用内：**设置 → 插件 → 添加插件**，填其中一种：
 
 ```text
-dsh-rea-mcp                                  # npm 包名
+dsh-rea-mcp                                  # npm 包名（推荐）
 github:sheilacraig/dsh-rea-mcp               # GitHub 仓库
-C:\path\to\a\local\checkout                  # 本地绝对路径
 ```
 
 CLI 持有的 profile：
@@ -57,6 +56,16 @@ dsh plugin --profile <profile> add dsh-rea-mcp
 ```
 
 Electron 桌面版的 `desktop` profile 属于应用本身，请走应用的插件面板。
+
+**本地开发时不要用外部目录的 link 安装。** 对本地 checkout 做正式验证，请先打包再安装（写到 DSH 自己的插件目录，而不是指向工作区的链接）：
+
+```sh
+cd dsh-rea-mcp
+npm pack                          # 产出 dsh-rea-mcp-<version>.tgz
+# 在 DSH 插件面板添加插件时，填这个 tarball 的本地路径即可
+```
+
+发布后，用户直接装 `dsh-rea-mcp` 包名即可，无需 tarball。
 
 装完**重启 DSH**，让新的补丁层在启动时合成。
 
