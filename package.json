@@ -49,9 +49,9 @@
     "tools/prewarm.mjs"
   ],
   "scripts": {
-    "test": "node --test test/",
+    "test": "node --test",
     "prewarm": "node tools/prewarm.mjs",
-    "prepublishOnly": "node --test test/ && node --check tools/prewarm.mjs"
+    "prepublishOnly": "node --test && node --check tools/prewarm.mjs"
   },
   "devDependencies": {
     "js-yaml": "^4.1.0"
